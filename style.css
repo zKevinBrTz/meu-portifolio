@@ -1,0 +1,861 @@
+body {
+    background-color: rgba(59, 0, 99, 0.973) !important;
+}/* --- ESTILOS GERAIS --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* RESET GERAL - Garante que nada antigo atrapalhe */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg-color: #080a0c; 
+    --snd-bg-color: #101418; 
+    --main-color: #e6b800; 
+    --main-color-hover: #b89200; 
+    --text-color: #e0e0e0; 
+    --second-text-color: #a0a0a0; 
+    --glass-bg: rgba(255, 255, 255, 0.02); 
+    --glass-border: rgba(255, 255, 255, 0.06); 
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+/* O !important aqui garante que o fundo roxo morra de vez */
+body {
+    background: var(--bg-color) !important;
+    color: var(--text-color);
+    line-height: 1.7;
+}
+
+/* Forçando todas as seções a seguirem o novo esquema */
+section {
+    background: var(--bg-color) !important;
+    padding: 6rem 9% 3rem;
+    min-height: auto;
+}
+
+/* Alternância sutil de fundo apenas para separar visualmente */
+section:nth-child(even) {
+    background: var(--snd-bg-color) !important;
+}
+
+.heading {
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 5rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.heading span {
+    color: var(--main-color);
+    text-shadow: 0 0 10px rgba(230, 184, 0, 0.2);
+}
+
+/* BOTÃO PREMIUM */
+.btn {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    background: var(--main-color);
+    border-radius: 1rem;
+    font-size: 1.6rem;
+    color: #000 !important; /* Texto sempre preto no botão dourado */
+    font-weight: 700;
+    transition: .5s ease;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: transparent;
+    color: var(--main-color) !important;
+    box-shadow: 0 0 2rem rgba(230, 184, 0, 0.4);
+    transform: translateY(-3px);
+    outline: 2px solid var(--main-color);
+}
+/* --- CABEÇALHO (HEADER) --- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 9%;
+    background: rgba(12, 28, 46, 0.85); /* Vidro no Header */
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.navbar a {
+    font-size: 1.7rem;
+    color: var(--text-color);
+    margin-left: 4rem;
+    transition: .3s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: var(--main-color);
+}
+
+#menu-icon {
+    font-size: 3.6rem;
+    color: var(--text-color);
+    display: none;
+    cursor: pointer;
+}
+
+/* --- HOME SECTION (AJUSTADA) --- */
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Gradiente ajustado para os novos tons de Roxo e Ciano */
+    background: radial-gradient(circle, rgba(26,0,51,0.5) 0%, rgba(12,28,46,1) 80%);
+    min-height: auto;        /* Remove a altura forçada de 100vh */
+    padding-top: 12rem;      /* Espaço para o Header */
+    padding-bottom: 5rem;    /* Diminui o espaço vertical inferior */
+    gap: 5rem;               /* Espaço entre o texto e a foto */
+}
+
+.home-content h3 {
+    font-size: 3.2rem;
+    font-weight: 700;
+}
+
+.home-content h1 {
+    font-size: 5.6rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.home-content p {
+    font-size: 1.6rem;
+    margin: 2rem 0 3rem;
+    max-width: 500px; /* Evita que o texto estique muito para os lados */
+}
+
+.social-media a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    background: transparent;
+    border: .2rem solid var(--main-color);
+    border-radius: 50%;
+    font-size: 2rem;
+    color: var(--main-color);
+    margin: 0 1.5rem 3rem 0;
+    transition: .5s ease;
+}
+
+.social-media a:hover {
+    background: var(--main-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 1rem var(--main-color);
+}
+
+/* --- AJUSTE DA FOTO (BOLINHA) --- */
+.home-img img {
+    width: 250px;            /* Tamanho fixo para garantir o círculo */
+    height: 250px;           /* Altura igual à largura */
+    object-fit: cover;       /* Não deixa a imagem esticar */
+    border-radius: 50%;      /* Faz a bolinha perfeita */
+    border: .5rem solid var(--main-color);
+    box-shadow: 0 0 2rem var(--main-color);
+    transition: .5s ease;
+}
+
+.home-img img:hover {
+    transform: scale(1.05); /* Efeito leve ao passar o mouse */
+}
+
+/* --- ABOUT SECTION --- */
+.about {
+    background: var(--snd-bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.about-content h2 {
+    text-align: center;
+}
+
+.about-content h3 {
+    font-size: 2.6rem;
+    color: var(--main-color);
+}
+
+.about-content p {
+    font-size: 1.6rem;
+    margin: 2rem 0 3rem;
+    line-height: 1.6;
+}
+
+/* --- STACKS SECTION --- */
+
+
+/* --- ESTILO GERAL DE CAIXINHAS (GLASSMORPHISM) --- */
+
+/* Aplica o efeito em .about-content (onde está o texto da imagem) */
+/* E também em .skills-box, .stack-box, .services-box (para uniformizar o site) */
+.about-content, 
+.skills-box, 
+.services-box {
+    background: rgba(255, 255, 255, 0.02); /* Fundo branco ultra transparente para escurecer sutilmente o fundo */
+    backdrop-filter: blur(15px); /* Efeito de vidro embaçado (precisa de fundo transparente) */
+    
+    /* Borda sutil para definir o contorno da caixinha */
+    border: 1px solid rgba(255, 255, 255, 0.08); 
+    
+    border-radius: 2rem; /* Cantos arredondados profissionais */
+    
+    /* Centraliza o conteúdo dentro da caixinha */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    /* Espaçamento interno para o texto não encostar na borda */
+    padding: 3rem; 
+    
+    /* Largura máxima para não esticar demais na tela */
+    max-width: 900px; 
+    margin: 0 auto; /* Centraliza a caixinha na tela */
+    
+    /* Transição sutil para o hover */
+    transition: 0.5s ease;
+}
+
+/* Efeito ao passar o mouse: Borda Dourada e Brilho */
+.about-content:hover, 
+.skills-box:hover, 
+.services-box:hover {
+    border-color: var(--main-color); /* Dourado Nobre */
+    box-shadow: 0 0 15px rgba(230, 184, 0, 0.2); /* Brilho Dourado suave */
+    transform: translateY(-5px); /* Sobe levemente a caixinha */
+}
+
+/* --- AJUSTE DE CORES DO TEXTO (LEITURA) --- */
+
+/* Título Dourado ("Desenvolvedor com DNA...") */
+.about-content h3 {
+    font-size: 2.5rem;
+    color: var(--main-color); /* Dourado */
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+/* Parágrafo de Leitura ("Minha jornada...") */
+.about-content p {
+    font-size: 1.6rem;
+    color: var(--text-color); /* Branco/Off-White que você definiu */
+    line-height: 1.8; /* Respiro entre as linhas para melhor leitura */
+    text-align: center;
+}
+/* --- PROJECTS SECTION (CORRIGIDA - CENTRALIZADA E SEM BUGS) --- */
+.projects {
+    background: var(--snd-bg-color);
+    padding-bottom: 5rem;
+}
+
+.projects-container {
+    display: grid;
+    /* Ajusta sozinho o número de colunas, min de 320px */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 3rem;
+    padding: 0 5%;
+}
+
+.project-box {
+    position: relative;
+    border-radius: 2rem;
+    box-shadow: 0 0 1.5rem rgba(0,0,0,0.5);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Organiza itens em coluna vertical */
+    height: 350px; /* Altura fixa confortável */
+    background: var(--glass-bg); /* Fundo de vidro padrão */
+    border: 1px solid var(--glass-border);
+    transition: .5s ease;
+}
+
+.project-box:hover {
+    border-color: var(--main-color);
+    transform: translateY(-5px); /* Efeito de subir no hover */
+}
+
+/* --- RESOLUÇÃO DA MANCHA D'ÁGUA (IMAGEM QUEBRADA) --- */
+.project-box img {
+    position: absolute; /* Tira do fluxo, fixa no fundo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cobre todo o card, sem esticar */
+    opacity: 0.5; /* Deixa quase invisível para o texto ser legível */
+    filter: brightness(0.7);
+    transition: .5s ease;
+}
+
+.project-box:hover img {
+    opacity: 0.1; /* Escurece no hover */
+}
+
+/* --- RESOLUÇÃO DO LAYOUT DO TEXTO CENTRALIZADO --- */
+.project-layer {
+    position: relative; /* Mudamos de absolute para relative */
+    z-index: 10; /* Garante que fique acima da imagem de fundo */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    text-align: center;
+    padding: 3rem;
+    transform: translateY(0); /* Texto sempre visível */
+    background: linear-gradient(transparent, rgba(12, 28, 46, 0.9)); /* Gradiente sutil */
+}
+
+.project-layer h4 {
+    font-size: 2.2rem;
+    color: var(--main-color);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.project-layer p {
+    font-size: 1.4rem;
+    margin-bottom: 3rem; /* Espaço maior para o link */
+    line-height: 1.5;
+    color: var(--text-color);
+}
+
+/* --- RESOLUÇÃO DO ÍCONE DO LINK <a> SOLTO --- */
+.project-layer a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 5rem;
+    background: var(--main-color);
+    border-radius: 50%;
+    color: var(--bg-color);
+    font-size: 2.4rem;
+    transition: .3s;
+    box-shadow: 0 0 1rem rgba(0, 231, 255, 0.3);
+}
+
+.project-layer a:hover {
+    transform: scale(1.1);
+    background: var(--main-color-hover);
+    box-shadow: 0 0 1.5rem rgba(184, 75, 255, 0.5);
+}
+
+/* --- AJUSTE NOS STACKS PARA EVITAR BUG DE ALTURA --- */
+.stacks-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    /* --- SEÇÃO DE CONTATO --- */
+/* --- SEÇÃO CONTATO (FORMULÁRIO) --- */
+form {
+    max-width: 900px;
+    margin: 5rem auto; /* Centraliza na tela */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Espaço entre as linhas de input */
+    padding: 3rem;
+    background: var(--glass-bg); /* Efeito Vidro */
+    border: 1px solid var(--glass-border);
+    border-radius: 2rem;
+}
+
+/* Container para inputs lado a lado (Nome/E-mail, Telefone/Motivo) */
+.input-group {
+    display: flex;
+    gap: 1.5rem;
+}
+
+/* Formatação para TODOS os inputs e textarea */
+form input,
+form textarea {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    font-size: 1.6rem;
+    background: #111418; /* Cinza bem escuro para contraste */
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Borda sutil */
+    border-radius: 1rem;
+    color: var(--text-color); /* Branco/Off-White que você definiu */
+    transition: 0.3s ease;
+}
+
+/* Formatação do Placeholder (o texto "fantasma") */
+form input::placeholder,
+form textarea::placeholder {
+    color: var(--second-text-color); /* Cinza mais claro para não cansar a vista */
+}
+
+/* Efeito ao focar no input (clicar nele) */
+form input:focus,
+form textarea:focus {
+    border-color: var(--main-color); /* Dourado */
+    box-shadow: 0 0 10px rgba(230, 184, 0, 0.2);
+}
+
+/* Botão Enviar (já estava bom, só uniformizei) */
+.contact-btn {
+    align-self: center; /* Centraliza o botão */
+    margin-top: 2rem;
+}
+/* Efeito de brilho Ciano ao clicar no campo */
+.contact form .input-box input:focus,
+.contact form textarea:focus {
+    border-color: var(--main-color);
+    box-shadow: 0 0 1rem rgba(0, 255, 255, 0.3);
+}
+
+.contact form .input-box input {
+    width: 49%; /* Divide em 2 colunas no desktop */
+}
+
+.contact form textarea {
+    resize: none; /* Impede o usuário de bagunçar o layout */
+}
+
+.contact form .btn {
+    margin-top: 2rem;
+    cursor: pointer;
+}
+
+/* Responsividade para Celulares */
+@media (max-width: 768px) {
+    .contact form .input-box input {
+        width: 100%;
+    }
+}
+
+/* --- FOOTER --- */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 2rem 9%;
+    background: var(--bg-color);
+}
+
+.footer-text p {
+    font-size: 1.4rem;
+    color: var(--text-color);
+}
+
+.footer-iconTop a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: .8rem;
+    background: var(--main-color);
+    border-radius: .8rem;
+    transition: .5s ease;
+}
+
+.footer-iconTop a:hover {
+    box-shadow: 0 0 1rem var(--main-color);
+}
+
+.footer-iconTop a i {
+    font-size: 2rem;
+    color: var(--bg-color);
+}
+
+/* --- MEDIA QUERIES (RESPONSIVIDADE) --- */
+/* --- SEÇÃO ENTREGA (CARDS) --- */
+.services-container {
+    display: grid;
+    /* Força exatamente 3 colunas de tamanhos iguais */
+    grid-template-columns: repeat(3, 1fr); 
+    align-items: start; /* Alinha pelo topo */
+    gap: 2.5rem; /* Espaço entre os cards */
+    max-width: 1200px; /* Impede que os cards fiquem largos demais */
+    margin: 3rem auto; /* Centraliza o container */
+}
+
+.services-box {
+    background: var(--glass-bg); /* Efeito Vidro Premium */
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(15px);
+    border-radius: 2rem;
+    padding: 3rem 2rem;
+    text-align: center;
+    transition: 0.5s ease-in-out;
+    height: 100%; /* Força todos os cards a terem a mesma altura */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Espaça o conteúdo internamente */
+}
+
+.services-box:hover {
+    border-color: var(--main-color); /* Dourado no hover */
+    transform: translateY(-8px) scale(1.02); /* Levita sutilmente */
+    box-shadow: 0 0 15px rgba(230, 184, 0, 0.2);
+}
+
+/* Ícones (Boxicons) */
+.services-box i {
+    font-size: 6rem;
+    color: var(--main-color); /* Dourado Nobre */
+    text-shadow: 0 0 10px rgba(230, 184, 0, 0.4); /* Brilho neon sutil */
+    margin-bottom: 1.5rem;
+}
+
+/* Título Dourado Nobre */
+.services-box h3 {
+    font-size: 2.2rem;
+    color: var(--text-color); /* Melhor leitura */
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* Parágrafo de Leitura */
+.services-box p {
+    font-size: 1.5rem;
+    color: var(--second-text-color); /* Cinza claro para não brigar com o título */
+    line-height: 1.6;
+}
+
+/* --- RESPONSIVIDADE (Celular) --- */
+@media (max-width: 991px) {
+    .services-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 por linha no Tablet */
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .services-container {
+        grid-template-columns: 1fr; /* 1 por linha no Celular */
+    }
+}
+/* --- NOVA SEÇÃO DE SKILLS --- */
+
+.skills {
+    background: transparent; /* Remove o fundo roxo sólido */
+}
+
+.skills-row {
+    display: flex; /* Coloca os dois painéis lado a lado */
+    flex-wrap: wrap;
+    gap: 4rem; /* Espaço entre os painéis */
+    justify-content: center;
+}
+
+.skills-column {
+    flex: 1 1 45rem; /* Permite que os painéis se adaptem a telas menores */
+}
+
+/* Títulos "Desenvolvimento" e "Infraestrutura" */
+.skills-column .title {
+    font-size: 2.5rem;
+    color: var(--text-color); /* Branco/Cinza claro */
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+/* O Box com Efeito Glassmorphism (Vidro) */
+.skills-box {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05); /* Fundo branco bem transparente */
+    backdrop-filter: blur(15px); /* O segredo do efeito vidro */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 3rem;
+    transition: 0.5s ease-in-out;
+}
+
+.skills-box:hover {
+    transform: translateY(-5px); /* Efeito de levitação */
+    border-color: var(--main-color); /* Ciano Brilhante no hover */
+    box-shadow: 0 0 20px rgba(0, 231, 255, 0.2);
+}
+
+/* Estrutura de cada Habilidade */
+.skills-content .progress {
+    padding: 1.5rem 0;
+}
+
+.skills-content .progress h3 {
+    font-size: 1.7rem;
+    display: flex;
+    justify-content: space-between; /* Texto na esquerda, porcentagem na direita */
+    color: var(--text-color);
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+/* Porcentagem (80%, 60%, etc.) */
+.skills-content .progress h3 span {
+    color: var(--main-color); /* Ciano */
+}
+
+/* O fundo cinza da barra */
+.skills-content .progress .bar {
+    height: 1.2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.6rem;
+    overflow: hidden;
+    position: relative;
+}
+
+/* A parte que preenche a barra (animação) */
+.skills-content .progress .bar span {
+    display: block;
+    height: 100%;
+    border-radius: 0.6rem;
+    background: linear-gradient(90s, var(--main-color), #01acdb); /* Gradiente Ciano */
+    width: 0; /* Começa em 0 */
+    transition: width 2s ease-in-out; /* Animação suave ao carregar */
+}
+
+/* Cores específicas para Infra (para dar um contraste) */
+.skills-content .progress .bar-infra span {
+    background: linear-gradient(90s, #a370f7, #6e44ff); /* Gradiente Roxo */
+}
+
+/* --- ATIVAÇÃO DAS BARRAS --- */
+/* Esta classe será adicionada pelo JavaScript para iniciar a animação */
+.skills-box.animate .progress .bar span {
+    /* Define as larguras baseadas no seu HTML */
+    width: 100%; /* Este seletor genérico é substituído pelas larguras específicas abaixo */
+}
+
+/* Larguras Específicas de Desenvolvimento */
+.skills-column:nth-child(1) .progress:nth-child(1) .bar span { width: 80%; } /* Python */
+.skills-column:nth-child(1) .progress:nth-child(2) .bar span { width: 60%; } /* C# */
+.skills-column:nth-child(1) .progress:nth-child(3) .bar span { width: 70%; } /* JS */
+
+/* Larguras Específicas de Infra */
+.skills-column:nth-child(2) .progress:nth-child(1) .bar span { width: 95%; } /* Redes */
+.skills-column:nth-child(2) .progress:nth-child(2) .bar span { width: 90%; } /* Server */
+.skills-column:nth-child(2) .progress:nth-child(3) .bar span { width: 85%; } /* Virtua */
+
+.stacks-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centraliza as fileiras */
+    align-items: center;
+    gap: 1.2rem; /* Espaço entre os badges */
+    max-width: 1100px; /* Aumentamos para caber 6 badges por linha */
+    margin: 3rem auto;
+    padding: 0 2rem;
+}
+
+.stack-box {
+    /* Ocupa aproximadamente 1/6 da largura da linha */
+    flex: 0 1 calc(16.66% - 1.2rem); 
+    display: flex;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.stack-box img {
+    height: 38px; /* Tamanho levemente maior para destaque */
+    width: auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.stack-box:hover {
+    transform: translateY(-7px) scale(1.05);
+    filter: drop-shadow(0 0 12px var(--main-color)); /* Brilho Ciano */
+}
+
+/* Responsividade: No Tablet vira 3 fileiras de 4 */
+@media (max-width: 992px) {
+    .stack-box {
+        flex: 0 1 calc(25% - 1.2rem);
+    }
+}
+
+/* Responsividade: No Celular vira 2 por linha */
+@media (max-width: 600px) {
+    .stack-box {
+        flex: 0 1 calc(50% - 1.2rem);
+    }
+}
+
+/* --- SEÇÃO DIFERENCIAIS --- */
+.diff-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem 7%;
+}
+
+.diff-box {
+    flex: 1 1 30rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2rem;
+    padding: 3rem 2rem;
+    text-align: center;
+    transition: 0.5s ease;
+}
+
+.diff-box:hover {
+    border-color: var(--main-color); /* Ciano */
+    transform: translateY(-10px);
+    box-shadow: 0 0 20px rgba(0, 231, 255, 0.2);
+}
+
+.diff-box i {
+    font-size: 6rem;
+    color: var(--main-color); /* Ciano */
+    /* Efeito de brilho no ícone */
+    text-shadow: 0 0 10px rgba(0, 231, 255, 0.5);
+    margin-bottom: 1.5rem;
+}
+
+.diff-box h3 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.diff-box p {
+    font-size: 1.5rem;
+    line-height: 1.6;
+}
+
+.timeline { padding: 4rem 9%; }
+.timeline-container {
+    max-width: 800px;
+    margin: 0 auto;
+    border-left: 2px solid var(--main-color);
+    padding-left: 2rem;
+}
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    background: var(--glass-bg);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--glass-border);
+}
+.timeline-dot {
+    position: absolute;
+    left: -2.7rem;
+    top: 2rem;
+    width: 12px;
+    height: 12px;
+    background: var(--main-color);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--main-color);
+}
+.timeline-date { color: var(--main-color); font-weight: 700; font-size: 1.4rem; }
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 2rem 9%;
+    background: var(--snd-bg-color);
+    border-top: 1px solid var(--glass-border);
+}
+.footer-text p { font-size: 1.6rem; color: var(--text-color); }
+.footer-iconTop a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: .8rem;
+    background: var(--main-color);
+    border-radius: .8rem;
+    transition: .5s ease;
+}
+.footer-iconTop a:hover { box-shadow: 0 0 1rem var(--main-color); }
+.footer-iconTop a i { font-size: 2.4rem; color: var(--bg-color); }
+
+::selection {
+    background-color: var(--main-color);
+    color: #000;
+}
+
+/* Scrollbar Dourada para combinar com o site */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-color); }
+::-webkit-scrollbar-thumb {
+    background: var(--main-color);
+    border-radius: 5px;
+}
+
+.timeline-content h3 {
+    font-size: 2rem;
+    color: var(--main-color); /* Dourado para o cargo/empresa */
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.timeline-content p {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.timeline-date {
+    display: inline-block;
+    color: #000;
+    background: var(--main-color); /* Fundo dourado na data para destaque */
+    padding: 0.2rem 1.2rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+}
+
+.timeline-content h3 {
+    font-size: 1.8rem;
+    color: var(--main-color); /* Dourado */
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    line-height: 1.5;
+}
