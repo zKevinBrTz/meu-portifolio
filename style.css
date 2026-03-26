@@ -1,6 +1,6 @@
 body {
     background-color: rgba(59, 0, 99, 0.973) !important;
-}/* --- ESTILOS GERAIS --- */
+}
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +12,6 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-/* RESET GERAL - Garante que nada antigo atrapalhe */
 * {
     margin: 0;
     padding: 0;
@@ -39,21 +38,19 @@ html {
     overflow-x: hidden;
 }
 
-/* O !important aqui garante que o fundo roxo morra de vez */
 body {
     background: var(--bg-color) !important;
     color: var(--text-color);
     line-height: 1.7;
 }
 
-/* Forçando todas as seções a seguirem o novo esquema */
 section {
     background: var(--bg-color) !important;
     padding: 6rem 9% 3rem;
     min-height: auto;
 }
 
-/* Alternância sutil de fundo apenas para separar visualmente */
+
 section:nth-child(even) {
     background: var(--snd-bg-color) !important;
 }
@@ -71,14 +68,14 @@ section:nth-child(even) {
     text-shadow: 0 0 10px rgba(230, 184, 0, 0.2);
 }
 
-/* BOTÃO PREMIUM */
+
 .btn {
     display: inline-block;
     padding: 1.2rem 3rem;
     background: var(--main-color);
     border-radius: 1rem;
     font-size: 1.6rem;
-    color: #000 !important; /* Texto sempre preto no botão dourado */
+    color: #000 !important; 
     font-weight: 700;
     transition: .5s ease;
     cursor: pointer;
@@ -98,7 +95,7 @@ section:nth-child(even) {
     left: 0;
     width: 100%;
     padding: 2rem 9%;
-    background: rgba(12, 28, 46, 0.85); /* Vidro no Header */
+    background: rgba(12, 28, 46, 0.85); 
     backdrop-filter: blur(10px);
     display: flex;
     justify-content: space-between;
@@ -131,17 +128,17 @@ section:nth-child(even) {
     cursor: pointer;
 }
 
-/* --- HOME SECTION (AJUSTADA) --- */
+
 .home {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Gradiente ajustado para os novos tons de Roxo e Ciano */
+
     background: radial-gradient(circle, rgba(26,0,51,0.5) 0%, rgba(12,28,46,1) 80%);
-    min-height: auto;        /* Remove a altura forçada de 100vh */
-    padding-top: 12rem;      /* Espaço para o Header */
-    padding-bottom: 5rem;    /* Diminui o espaço vertical inferior */
-    gap: 5rem;               /* Espaço entre o texto e a foto */
+    min-height: auto;        
+    padding-top: 12rem;     
+    padding-bottom: 5rem;   
+    gap: 5rem;             
 }
 
 .home-content h3 {
@@ -158,7 +155,7 @@ section:nth-child(even) {
 .home-content p {
     font-size: 1.6rem;
     margin: 2rem 0 3rem;
-    max-width: 500px; /* Evita que o texto estique muito para os lados */
+    max-width: 500px; 
 }
 
 .social-media a {
@@ -182,19 +179,19 @@ section:nth-child(even) {
     box-shadow: 0 0 1rem var(--main-color);
 }
 
-/* --- AJUSTE DA FOTO (BOLINHA) --- */
+/* --- AJUSTE DA FOTO --- */
 .home-img img {
-    width: 250px;            /* Tamanho fixo para garantir o círculo */
-    height: 250px;           /* Altura igual à largura */
-    object-fit: cover;       /* Não deixa a imagem esticar */
-    border-radius: 50%;      /* Faz a bolinha perfeita */
+    width: 250px;            
+    height: 250px;           
+    object-fit: cover;      
+    border-radius: 50%;    
     border: .5rem solid var(--main-color);
     box-shadow: 0 0 2rem var(--main-color);
     transition: .5s ease;
 }
 
 .home-img img:hover {
-    transform: scale(1.05); /* Efeito leve ao passar o mouse */
+    transform: scale(1.05); 
 }
 
 /* --- ABOUT SECTION --- */
@@ -221,69 +218,63 @@ section:nth-child(even) {
     line-height: 1.6;
 }
 
-/* --- STACKS SECTION --- */
 
 
-/* --- ESTILO GERAL DE CAIXINHAS (GLASSMORPHISM) --- */
-
-/* Aplica o efeito em .about-content (onde está o texto da imagem) */
-/* E também em .skills-box, .stack-box, .services-box (para uniformizar o site) */
 .about-content, 
 .skills-box, 
 .services-box {
-    background: rgba(255, 255, 255, 0.02); /* Fundo branco ultra transparente para escurecer sutilmente o fundo */
-    backdrop-filter: blur(15px); /* Efeito de vidro embaçado (precisa de fundo transparente) */
+    background: rgba(255, 255, 255, 0.02); 
+    backdrop-filter: blur(15px); 
     
-    /* Borda sutil para definir o contorno da caixinha */
+  
     border: 1px solid rgba(255, 255, 255, 0.08); 
     
-    border-radius: 2rem; /* Cantos arredondados profissionais */
+    border-radius: 2rem; 
     
-    /* Centraliza o conteúdo dentro da caixinha */
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     
-    /* Espaçamento interno para o texto não encostar na borda */
+    
     padding: 3rem; 
     
-    /* Largura máxima para não esticar demais na tela */
-    max-width: 900px; 
-    margin: 0 auto; /* Centraliza a caixinha na tela */
     
-    /* Transição sutil para o hover */
+    max-width: 900px; 
+    margin: 0 auto; 
+    
+    
     transition: 0.5s ease;
 }
 
-/* Efeito ao passar o mouse: Borda Dourada e Brilho */
+
 .about-content:hover, 
 .skills-box:hover, 
 .services-box:hover {
-    border-color: var(--main-color); /* Dourado Nobre */
-    box-shadow: 0 0 15px rgba(230, 184, 0, 0.2); /* Brilho Dourado suave */
-    transform: translateY(-5px); /* Sobe levemente a caixinha */
+    border-color: var(--main-color); 
+    box-shadow: 0 0 15px rgba(230, 184, 0, 0.2);
+    transform: translateY(-5px);
 }
 
-/* --- AJUSTE DE CORES DO TEXTO (LEITURA) --- */
 
-/* Título Dourado ("Desenvolvedor com DNA...") */
+
 .about-content h3 {
     font-size: 2.5rem;
-    color: var(--main-color); /* Dourado */
+    color: var(--main-color); 
     margin-bottom: 2rem;
     text-align: center;
     font-weight: 700;
 }
 
-/* Parágrafo de Leitura ("Minha jornada...") */
+
 .about-content p {
     font-size: 1.6rem;
-    color: var(--text-color); /* Branco/Off-White que você definiu */
-    line-height: 1.8; /* Respiro entre as linhas para melhor leitura */
+    color: var(--text-color); 
+    line-height: 1.8; 
     text-align: center;
 }
-/* --- PROJECTS SECTION (CORRIGIDA - CENTRALIZADA E SEM BUGS) --- */
+/* --- PROJECTS SECTION --- */
 .projects {
     background: var(--snd-bg-color);
     padding-bottom: 5rem;
@@ -291,7 +282,7 @@ section:nth-child(even) {
 
 .projects-container {
     display: grid;
-    /* Ajusta sozinho o número de colunas, min de 320px */
+
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
     gap: 3rem;
     padding: 0 5%;
@@ -303,49 +294,49 @@ section:nth-child(even) {
     box-shadow: 0 0 1.5rem rgba(0,0,0,0.5);
     overflow: hidden;
     display: flex;
-    flex-direction: column; /* Organiza itens em coluna vertical */
-    height: 350px; /* Altura fixa confortável */
-    background: var(--glass-bg); /* Fundo de vidro padrão */
+    flex-direction: column; 
+    height: 350px; 
+    background: var(--glass-bg); 
     border: 1px solid var(--glass-border);
     transition: .5s ease;
 }
 
 .project-box:hover {
     border-color: var(--main-color);
-    transform: translateY(-5px); /* Efeito de subir no hover */
+    transform: translateY(-5px); 
 }
 
-/* --- RESOLUÇÃO DA MANCHA D'ÁGUA (IMAGEM QUEBRADA) --- */
+/* --- RESOLUÇÃO DA MANCHA D'ÁGUA --- */
 .project-box img {
-    position: absolute; /* Tira do fluxo, fixa no fundo */
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Cobre todo o card, sem esticar */
-    opacity: 0.5; /* Deixa quase invisível para o texto ser legível */
+    object-fit: cover; 
+    opacity: 0.5; 
     filter: brightness(0.7);
     transition: .5s ease;
 }
 
 .project-box:hover img {
-    opacity: 0.1; /* Escurece no hover */
+    opacity: 0.1; 
 }
 
-/* --- RESOLUÇÃO DO LAYOUT DO TEXTO CENTRALIZADO --- */
+
 .project-layer {
-    position: relative; /* Mudamos de absolute para relative */
-    z-index: 10; /* Garante que fique acima da imagem de fundo */
+    position: relative; 
+    z-index: 10; 
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centraliza verticalmente */
-    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; 
+    align-items: center;
     text-align: center;
     padding: 3rem;
-    transform: translateY(0); /* Texto sempre visível */
-    background: linear-gradient(transparent, rgba(12, 28, 46, 0.9)); /* Gradiente sutil */
+    transform: translateY(0); 
+    background: linear-gradient(transparent, rgba(12, 28, 46, 0.9)); 
 }
 
 .project-layer h4 {
@@ -357,12 +348,12 @@ section:nth-child(even) {
 
 .project-layer p {
     font-size: 1.4rem;
-    margin-bottom: 3rem; /* Espaço maior para o link */
+    margin-bottom: 3rem; 
     line-height: 1.5;
     color: var(--text-color);
 }
 
-/* --- RESOLUÇÃO DO ÍCONE DO LINK <a> SOLTO --- */
+
 .project-layer a {
     display: inline-flex;
     justify-content: center;
@@ -383,64 +374,63 @@ section:nth-child(even) {
     box-shadow: 0 0 1.5rem rgba(184, 75, 255, 0.5);
 }
 
-/* --- AJUSTE NOS STACKS PARA EVITAR BUG DE ALTURA --- */
+
 .stacks-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
 
-    /* --- SEÇÃO DE CONTATO --- */
-/* --- SEÇÃO CONTATO (FORMULÁRIO) --- */
+
 form {
     max-width: 900px;
-    margin: 5rem auto; /* Centraliza na tela */
+    margin: 5rem auto; 
     display: flex;
     flex-direction: column;
-    gap: 1.5rem; /* Espaço entre as linhas de input */
+    gap: 1.5rem; 
     padding: 3rem;
-    background: var(--glass-bg); /* Efeito Vidro */
+    background: var(--glass-bg); 
     border: 1px solid var(--glass-border);
     border-radius: 2rem;
 }
 
-/* Container para inputs lado a lado (Nome/E-mail, Telefone/Motivo) */
+
 .input-group {
     display: flex;
     gap: 1.5rem;
 }
 
-/* Formatação para TODOS os inputs e textarea */
+
 form input,
 form textarea {
     width: 100%;
     padding: 1.5rem 2rem;
     font-size: 1.6rem;
-    background: #111418; /* Cinza bem escuro para contraste */
-    border: 1px solid rgba(255, 255, 255, 0.08); /* Borda sutil */
+    background: #111418; 
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 1rem;
-    color: var(--text-color); /* Branco/Off-White que você definiu */
+    color: var(--text-color); 
     transition: 0.3s ease;
 }
 
-/* Formatação do Placeholder (o texto "fantasma") */
+
 form input::placeholder,
 form textarea::placeholder {
-    color: var(--second-text-color); /* Cinza mais claro para não cansar a vista */
+    color: var(--second-text-color); 
 }
 
-/* Efeito ao focar no input (clicar nele) */
+
 form input:focus,
 form textarea:focus {
-    border-color: var(--main-color); /* Dourado */
+    border-color: var(--main-color);
     box-shadow: 0 0 10px rgba(230, 184, 0, 0.2);
 }
 
-/* Botão Enviar (já estava bom, só uniformizei) */
+
 .contact-btn {
-    align-self: center; /* Centraliza o botão */
+    align-self: center;
     margin-top: 2rem;
 }
-/* Efeito de brilho Ciano ao clicar no campo */
+
 .contact form .input-box input:focus,
 .contact form textarea:focus {
     border-color: var(--main-color);
@@ -448,11 +438,11 @@ form textarea:focus {
 }
 
 .contact form .input-box input {
-    width: 49%; /* Divide em 2 colunas no desktop */
+    width: 49%; 
 }
 
 .contact form textarea {
-    resize: none; /* Impede o usuário de bagunçar o layout */
+    resize: none;
 }
 
 .contact form .btn {
@@ -460,7 +450,7 @@ form textarea:focus {
     cursor: pointer;
 }
 
-/* Responsividade para Celulares */
+
 @media (max-width: 768px) {
     .contact form .input-box input {
         width: 100%;
@@ -501,104 +491,103 @@ form textarea:focus {
     color: var(--bg-color);
 }
 
-/* --- MEDIA QUERIES (RESPONSIVIDADE) --- */
-/* --- SEÇÃO ENTREGA (CARDS) --- */
+
 .services-container {
     display: grid;
-    /* Força exatamente 3 colunas de tamanhos iguais */
+   
     grid-template-columns: repeat(3, 1fr); 
-    align-items: start; /* Alinha pelo topo */
-    gap: 2.5rem; /* Espaço entre os cards */
-    max-width: 1200px; /* Impede que os cards fiquem largos demais */
-    margin: 3rem auto; /* Centraliza o container */
+    align-items: start;
+    gap: 2.5rem;
+    max-width: 1200px; 
+    margin: 3rem auto; 
 }
 
 .services-box {
-    background: var(--glass-bg); /* Efeito Vidro Premium */
+    background: var(--glass-bg); 
     border: 1px solid var(--glass-border);
     backdrop-filter: blur(15px);
     border-radius: 2rem;
     padding: 3rem 2rem;
     text-align: center;
     transition: 0.5s ease-in-out;
-    height: 100%; /* Força todos os cards a terem a mesma altura */
+    height: 100%; 
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Espaça o conteúdo internamente */
+    justify-content: space-between; 
 }
 
 .services-box:hover {
-    border-color: var(--main-color); /* Dourado no hover */
-    transform: translateY(-8px) scale(1.02); /* Levita sutilmente */
+    border-color: var(--main-color); 
+    transform: translateY(-8px) scale(1.02); 
     box-shadow: 0 0 15px rgba(230, 184, 0, 0.2);
 }
 
-/* Ícones (Boxicons) */
+
 .services-box i {
     font-size: 6rem;
-    color: var(--main-color); /* Dourado Nobre */
-    text-shadow: 0 0 10px rgba(230, 184, 0, 0.4); /* Brilho neon sutil */
+    color: var(--main-color);
+    text-shadow: 0 0 10px rgba(230, 184, 0, 0.4); 
     margin-bottom: 1.5rem;
 }
 
-/* Título Dourado Nobre */
+
 .services-box h3 {
     font-size: 2.2rem;
-    color: var(--text-color); /* Melhor leitura */
+    color: var(--text-color);
     font-weight: 600;
     margin-bottom: 1rem;
 }
 
-/* Parágrafo de Leitura */
+
 .services-box p {
     font-size: 1.5rem;
-    color: var(--second-text-color); /* Cinza claro para não brigar com o título */
+    color: var(--second-text-color);
     line-height: 1.6;
 }
 
-/* --- RESPONSIVIDADE (Celular) --- */
+
 @media (max-width: 991px) {
     .services-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 por linha no Tablet */
+        grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
     }
 }
 
 @media (max-width: 600px) {
     .services-container {
-        grid-template-columns: 1fr; /* 1 por linha no Celular */
+        grid-template-columns: 1fr; 
     }
 }
-/* --- NOVA SEÇÃO DE SKILLS --- */
+
 
 .skills {
-    background: transparent; /* Remove o fundo roxo sólido */
+    background: transparent; 
 }
 
 .skills-row {
-    display: flex; /* Coloca os dois painéis lado a lado */
+    display: flex; 
     flex-wrap: wrap;
-    gap: 4rem; /* Espaço entre os painéis */
+    gap: 4rem;
     justify-content: center;
 }
 
 .skills-column {
-    flex: 1 1 45rem; /* Permite que os painéis se adaptem a telas menores */
+    flex: 1 1 45rem; 
 }
 
-/* Títulos "Desenvolvimento" e "Infraestrutura" */
+
 .skills-column .title {
     font-size: 2.5rem;
-    color: var(--text-color); /* Branco/Cinza claro */
+    color: var(--text-color);
     margin-bottom: 2rem;
     font-weight: 600;
 }
 
-/* O Box com Efeito Glassmorphism (Vidro) */
+
 .skills-box {
     position: relative;
-    background: rgba(255, 255, 255, 0.05); /* Fundo branco bem transparente */
-    backdrop-filter: blur(15px); /* O segredo do efeito vidro */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     padding: 3rem;
@@ -606,12 +595,12 @@ form textarea:focus {
 }
 
 .skills-box:hover {
-    transform: translateY(-5px); /* Efeito de levitação */
-    border-color: var(--main-color); /* Ciano Brilhante no hover */
+    transform: translateY(-5px);
+    border-color: var(--main-color); 
     box-shadow: 0 0 20px rgba(0, 231, 255, 0.2);
 }
 
-/* Estrutura de cada Habilidade */
+
 .skills-content .progress {
     padding: 1.5rem 0;
 }
@@ -619,18 +608,18 @@ form textarea:focus {
 .skills-content .progress h3 {
     font-size: 1.7rem;
     display: flex;
-    justify-content: space-between; /* Texto na esquerda, porcentagem na direita */
+    justify-content: space-between;
     color: var(--text-color);
     font-weight: 500;
     margin-bottom: 1rem;
 }
 
-/* Porcentagem (80%, 60%, etc.) */
+
 .skills-content .progress h3 span {
-    color: var(--main-color); /* Ciano */
+    color: var(--main-color);
 }
 
-/* O fundo cinza da barra */
+
 .skills-content .progress .bar {
     height: 1.2rem;
     background: rgba(255, 255, 255, 0.1);
@@ -639,29 +628,28 @@ form textarea:focus {
     position: relative;
 }
 
-/* A parte que preenche a barra (animação) */
+
 .skills-content .progress .bar span {
     display: block;
     height: 100%;
     border-radius: 0.6rem;
-    background: linear-gradient(90s, var(--main-color), #01acdb); /* Gradiente Ciano */
-    width: 0; /* Começa em 0 */
-    transition: width 2s ease-in-out; /* Animação suave ao carregar */
+    background: linear-gradient(90s, var(--main-color), #01acdb); 
+    width: 0; 
+    transition: width 2s ease-in-out; 
 }
 
-/* Cores específicas para Infra (para dar um contraste) */
+
 .skills-content .progress .bar-infra span {
-    background: linear-gradient(90s, #a370f7, #6e44ff); /* Gradiente Roxo */
+    background: linear-gradient(90s, #a370f7, #6e44ff); 
 }
 
-/* --- ATIVAÇÃO DAS BARRAS --- */
-/* Esta classe será adicionada pelo JavaScript para iniciar a animação */
+
 .skills-box.animate .progress .bar span {
-    /* Define as larguras baseadas no seu HTML */
-    width: 100%; /* Este seletor genérico é substituído pelas larguras específicas abaixo */
+    
+    width: 100%; 
 }
 
-/* Larguras Específicas de Desenvolvimento */
+
 .skills-column:nth-child(1) .progress:nth-child(1) .bar span { width: 80%; } /* Python */
 .skills-column:nth-child(1) .progress:nth-child(2) .bar span { width: 60%; } /* C# */
 .skills-column:nth-child(1) .progress:nth-child(3) .bar span { width: 70%; } /* JS */
@@ -674,16 +662,16 @@ form textarea:focus {
 .stacks-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Centraliza as fileiras */
+    justify-content: center; 
     align-items: center;
-    gap: 1.2rem; /* Espaço entre os badges */
-    max-width: 1100px; /* Aumentamos para caber 6 badges por linha */
+    gap: 1.2rem; 
+    max-width: 1100px; 
     margin: 3rem auto;
     padding: 0 2rem;
 }
 
 .stack-box {
-    /* Ocupa aproximadamente 1/6 da largura da linha */
+    
     flex: 0 1 calc(16.66% - 1.2rem); 
     display: flex;
     justify-content: center;
@@ -691,7 +679,7 @@ form textarea:focus {
 }
 
 .stack-box img {
-    height: 38px; /* Tamanho levemente maior para destaque */
+    height: 38px; 
     width: auto;
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -699,17 +687,17 @@ form textarea:focus {
 
 .stack-box:hover {
     transform: translateY(-7px) scale(1.05);
-    filter: drop-shadow(0 0 12px var(--main-color)); /* Brilho Ciano */
+    filter: drop-shadow(0 0 12px var(--main-color)); 
 }
 
-/* Responsividade: No Tablet vira 3 fileiras de 4 */
+
 @media (max-width: 992px) {
     .stack-box {
         flex: 0 1 calc(25% - 1.2rem);
     }
 }
 
-/* Responsividade: No Celular vira 2 por linha */
+
 @media (max-width: 600px) {
     .stack-box {
         flex: 0 1 calc(50% - 1.2rem);
@@ -738,7 +726,7 @@ form textarea:focus {
 }
 
 .diff-box:hover {
-    border-color: var(--main-color); /* Ciano */
+    border-color: var(--main-color); 
     transform: translateY(-10px);
     box-shadow: 0 0 20px rgba(0, 231, 255, 0.2);
 }
@@ -815,7 +803,7 @@ form textarea:focus {
     color: #000;
 }
 
-/* Scrollbar Dourada para combinar com o site */
+
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: var(--bg-color); }
 ::-webkit-scrollbar-thumb {
@@ -825,7 +813,7 @@ form textarea:focus {
 
 .timeline-content h3 {
     font-size: 2rem;
-    color: var(--main-color); /* Dourado para o cargo/empresa */
+    color: var(--main-color); 
     margin-bottom: 1rem;
     font-weight: 600;
 }
@@ -839,7 +827,7 @@ form textarea:focus {
 .timeline-date {
     display: inline-block;
     color: #000;
-    background: var(--main-color); /* Fundo dourado na data para destaque */
+    background: var(--main-color); 
     padding: 0.2rem 1.2rem;
     border-radius: 0.5rem;
     font-weight: 700;
