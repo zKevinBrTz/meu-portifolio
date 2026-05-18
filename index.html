@@ -1,336 +1,807 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfólio de Kevin Tan — Desenvolvedor Backend especializado em Automação, C#, Python e Cloud.">
-    <title>Kevin Tan | Software Developer</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfólio de Kevin Tan — Desenvolvedor Backend especializado em Automação, C#, Python e Cloud." />
+  <title>Kevin Tan | Software Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg2: #0f0f1a;
+      --bg3: #14141f;
+      --card: #111120;
+      --border: rgba(100, 120, 255, 0.12);
+      --accent: #5b6fff;
+      --accent2: #8b5cf6;
+      --accent3: #06d6a0;
+      --text: #e8e8f0;
+      --muted: #7b7b99;
+      --mono: 'DM Mono', monospace;
+      --sans: 'Syne', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: 0.4;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5%;
+      background: rgba(10,10,15,0.8);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 1.1rem; font-weight: 800; letter-spacing: -0.02em;
+      color: var(--text); text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--mono); font-size: 0.8rem; color: var(--muted);
+      text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8rem 5% 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute; width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(91,111,255,0.15) 0%, transparent 70%);
+      top: 50%; left: 30%; transform: translate(-50%,-50%);
+      pointer-events: none;
+    }
+    .hero-content { max-width: 55%; position: relative; z-index: 1; }
+    .hero-tag {
+      font-family: var(--mono); font-size: 0.75rem; color: var(--accent3);
+      letter-spacing: 0.15em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.2rem;
+    }
+    .hero-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent3); }
+    h1 {
+      font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 800;
+      line-height: 1.0; letter-spacing: -0.04em; margin-bottom: 0.5rem;
+    }
+    h1 .accent { color: var(--accent); }
+    /* ── TYPEWRITER ── */
+    .hero-sub {
+      font-family: var(--mono); font-size: 0.9rem; color: var(--muted);
+      margin-bottom: 1.5rem; line-height: 1.6;
+      display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;
+    }
+    .typewriter-prefix { color: var(--accent3); }
+    #typewriter-word {
+      color: var(--accent);
+      border-right: 2px solid var(--accent);
+      padding-right: 3px;
+      animation: blink-caret 0.75s step-end infinite;
+      white-space: nowrap;
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: var(--accent); }
+    }
+    .hero-desc { font-size: 1rem; color: #9999bb; line-height: 1.7; max-width: 480px; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.75rem; border-radius: 6px;
+      background: var(--accent); color: #fff; font-family: var(--sans);
+      font-weight: 700; font-size: 0.9rem; text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 0 0 0 rgba(91,111,255,0);
+    }
+    .btn-primary:hover {
+      background: #7b8fff; transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(91,111,255,0.35);
+    }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.75rem; border-radius: 6px;
+      border: 1px solid var(--border); color: var(--text);
+      font-family: var(--sans); font-weight: 600; font-size: 0.9rem;
+      text-decoration: none; background: transparent;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .hero-socials { display: flex; gap: 1.2rem; }
+    .hero-socials a {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 0.9rem; text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .hero-socials a:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
+    .hero-image {
+      width: 320px; height: 380px; border-radius: 16px; overflow: hidden;
+      position: relative; z-index: 1; flex-shrink: 0;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 60px rgba(91,111,255,0.1);
+    }
+    .hero-image img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-image::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(10,10,15,0.6));
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 5%; position: relative; }
+    .section-label {
+      font-family: var(--mono); font-size: 0.72rem; color: var(--accent);
+      letter-spacing: 0.18em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.8rem;
+    }
+    .section-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--accent); opacity: 0.4; }
+    h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1rem; }
+    .section-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.7; max-width: 520px; margin-bottom: 3.5rem; }
+
+    /* ── SOBRE ── */
+    #sobre { background: var(--bg2); }
+    .sobre-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .sobre-text p { color: #9999bb; line-height: 1.8; margin-bottom: 1rem; font-size: 0.97rem; }
+    .sobre-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;
+    }
+    .stat-card {
+      padding: 1.2rem 1.5rem; border-radius: 10px;
+      border: 1px solid var(--border); background: var(--card);
+    }
+    .stat-num { font-size: 2rem; font-weight: 800; color: var(--accent); line-height: 1; }
+    .stat-label { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); margin-top: 0.3rem; }
+    .sobre-skills h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--muted); font-family: var(--mono); letter-spacing: 0.05em; }
+    .skill-bar { margin-bottom: 1.1rem; }
+    .skill-header { display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.85rem; }
+    .skill-pct { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); }
+    .bar-track { height: 4px; background: var(--border); border-radius: 2px; }
+    .bar-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+
+    /* ── STACKS ── */
+    #stacks { }
+    .stacks-grid {
+      display: flex; flex-wrap: wrap; gap: 0.7rem;
+    }
+    .stack-tag {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.45rem 0.9rem; border-radius: 20px;
+      border: 1px solid var(--border); background: var(--card);
+      font-family: var(--mono); font-size: 0.78rem; color: var(--muted);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .stack-tag:hover { border-color: var(--accent); color: var(--text); }
+    .stack-tag i { color: var(--accent); font-size: 0.75rem; }
+    .stack-study {
+      border-color: rgba(251,191,36,0.25) !important;
+      background: rgba(251,191,36,0.05) !important;
+    }
+    .stack-study i { color: #fbbf24 !important; }
+    .stack-study:hover { border-color: #fbbf24 !important; color: #fbbf24 !important; }
+    .study-label {
+      font-family: var(--mono); font-size: 0.72rem; color: #fbbf24;
+      letter-spacing: 0.1em; display: flex; align-items: center; gap: 0.5rem;
+      margin-top: 2rem; margin-bottom: 0.5rem; opacity: 0.8;
+    }
+
+    /* ── PROJETOS ── */
+    #projetos { background: var(--bg2); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .project-card {
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border); background: var(--card);
+      position: relative; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+      border-color: rgba(91,111,255,0.3);
+    }
+    .project-img {
+      height: 180px; overflow: hidden; position: relative;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+    }
+    .project-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: opacity 0.3s, transform 0.4s; }
+    .project-card:hover .project-img img { opacity: 0.9; transform: scale(1.04); }
+    .project-body { padding: 1.4rem; flex: 1; display: flex; flex-direction: column; }
+    .project-cat {
+      font-family: var(--mono); font-size: 0.68rem; color: var(--accent3);
+      letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.5rem;
+    }
+    .project-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .project-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; flex: 1; }
+    .project-footer { display: flex; justify-content: flex-end; margin-top: 1.2rem; }
+    .project-link {
+      font-family: var(--mono); font-size: 0.75rem; color: var(--accent);
+      text-decoration: none; display: flex; align-items: center; gap: 0.4rem;
+      transition: gap 0.2s;
+    }
+    .project-link:hover { gap: 0.7rem; }
+
+    /* NEW badge */
+    .badge-new {
+      position: absolute; top: 10px; right: 10px;
+      background: var(--accent3); color: #000;
+      font-family: var(--mono); font-size: 0.65rem; font-weight: 500;
+      padding: 0.2rem 0.55rem; border-radius: 20px; letter-spacing: 0.08em;
+    }
+
+    /* ── TRAJETÓRIA ── */
+    #trajetoria { }
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+      width: 1px; background: var(--border);
+    }
+    .tl-item { position: relative; margin-bottom: 2.5rem; }
+    .tl-dot {
+      position: absolute; left: -2.35rem; top: 5px;
+      width: 10px; height: 10px; border-radius: 50%;
+      border: 2px solid var(--accent); background: var(--bg);
+    }
+    .tl-meta { font-family: var(--mono); font-size: 0.75rem; color: var(--accent3); margin-bottom: 0.3rem; }
+    .tl-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; }
+    .tl-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── CONTATO ── */
+    #contato { background: var(--bg2); }
+    .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .contact-info p { color: var(--muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 2rem; }
+    .contact-item {
+      display: flex; align-items: center; gap: 0.8rem;
+      padding: 0.9rem 1.2rem; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--card); margin-bottom: 0.8rem;
+      text-decoration: none; color: var(--text);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .contact-item:hover { border-color: var(--accent); transform: translateX(4px); }
+    .contact-item i { color: var(--accent); width: 18px; text-align: center; }
+    .contact-item span { font-size: 0.88rem; }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-form input, .contact-form textarea {
+      padding: 0.85rem 1rem; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--card);
+      color: var(--text); font-family: var(--sans); font-size: 0.9rem;
+      outline: none; transition: border-color 0.2s;
+      resize: none;
+    }
+    .contact-form input:focus, .contact-form textarea:focus { border-color: var(--accent); }
+    .contact-form textarea { height: 130px; }
+    .contact-form button {
+      padding: 0.85rem; border-radius: 8px; border: none;
+      background: var(--accent); color: #fff; font-family: var(--sans);
+      font-weight: 700; font-size: 0.95rem; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .contact-form button:hover { background: #7b8fff; transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 2rem;
+      font-family: var(--mono); font-size: 0.75rem; color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ── PROJETOS FACULDADE ── */
+    #projetos-faculdade { }
+    .facul-highlight {
+      position: relative; border-radius: 14px; overflow: hidden;
+      border: 1px solid rgba(6,214,160,0.2); background: var(--card);
+      margin-bottom: 2rem;
+    }
+    .facul-highlight-badge {
+      position: absolute; top: 1.2rem; right: 1.2rem;
+      font-family: var(--mono); font-size: 0.68rem; color: #06d6a0;
+      border: 1px solid rgba(6,214,160,0.3); background: rgba(6,214,160,0.08);
+      padding: 0.25rem 0.7rem; border-radius: 20px; letter-spacing: 0.08em;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .facul-highlight-content {
+      display: grid; grid-template-columns: 1fr 220px; align-items: center;
+    }
+    .facul-highlight-text { padding: 2rem 2rem 2rem 2rem; }
+    .facul-highlight-visual { height: 200px; }
+    .facul-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+    }
+    .facul-card {
+      padding: 1.6rem; border-radius: 12px;
+      border: 1px solid var(--border); background: var(--card);
+      transition: border-color 0.25s, transform 0.2s;
+    }
+    .facul-card:hover { border-color: rgba(91,111,255,0.3); transform: translateY(-3px); }
+    .facul-icon { font-size: 1.6rem; color: var(--accent3); margin-bottom: 0.8rem; }
+    .facul-card h4 { font-size: 1rem; font-weight: 700; margin: 0.3rem 0 0.6rem; }
+    .facul-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+    @media (max-width: 900px) {
+      .facul-highlight-content { grid-template-columns: 1fr; }
+      .facul-highlight-visual { display: none; }
+      .facul-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── SCROLL UP ── */
+    .scroll-up {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 99;
+      width: 42px; height: 42px; border-radius: 50%;
+      border: 1px solid var(--border); background: var(--card);
+      color: var(--muted); display: flex; align-items: center; justify-content: center;
+      text-decoration: none; font-size: 0.85rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .scroll-up:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      #home { flex-direction: column; text-align: center; padding-top: 6rem; }
+      .hero-content { max-width: 100%; }
+      .hero-desc { max-width: 100%; margin-inline: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-socials { justify-content: center; }
+      .hero-image { width: 260px; height: 300px; margin-top: 2rem; }
+      .sobre-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 2rem; }
+      .nav-links { display: none; }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- ========== HEADER ========== -->
-    <header class="header">
-        <a href="#" class="logo">Kevin Tan</a>
-        <nav class="navbar">
-            <a href="#home" class="active">Início</a>
-            <a href="#sobre">Sobre</a>
-            <a href="#stacks">Stacks</a>
-            <a href="#projetos">Projetos</a>
-            <a href="#contato">Contato</a>
-        </nav>
-        <div class="bx bx-menu" id="menu-icon"></div>
-    </header>
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">Kevin<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#home">Início</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#stacks">Stacks</a></li>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#projetos-faculdade">Faculdade</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
 
-    <!-- ========== HOME ========== -->
-    <section class="home" id="home">
-        <div class="home-content">
-            <h3>Olá, eu sou</h3>
-            <h1>Kevin Tan</h1>
-            <h3>Eu sou um <span class="typing"></span></h3>
+<!-- HERO -->
+<section id="home">
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <p class="hero-tag">Olá, eu sou</p>
+    <h1>Kevin<br><span class="accent">Tan</span></h1>
+    <p class="hero-sub">
+      <span class="typewriter-prefix">// Especialista em</span>
+      <span id="typewriter-word"></span>
+    </p>
+    <p class="hero-desc">
+      Transformando infraestruturas complexas em código eficiente e seguro.
+      Backend · Cloud · DevOps · IA Aplicada.
+    </p>
+    <div class="hero-actions">
+      <!-- BOTÃO EMAIL CORRIGIDO -->
+      <a href="mailto:kevinmineybroetto@gmail.com" class="btn-primary">
+        <i class="fas fa-envelope"></i> Enviar E-mail
+      </a>
+      <!-- BOTÃO DOWNLOAD CV com o PDF novo -->
+      <a href="Kevin_Tan_Cloud_pdf.pdf" download="Curriculo_Kevin_Tan.pdf" class="btn-outline">
+        <i class="fas fa-download"></i> Download CV
+      </a>
+    </div>
+    <div class="hero-socials">
+      <a href="https://linkedin.com/in/kevin-miney-tan-broetto-10b07b2ab" target="_blank" title="LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a href="https://github.com/zKevinBrTz" target="_blank" title="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="mailto:kevinmineybroetto@gmail.com" title="E-mail">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="https://zkevinbrtz.github.io/meu-portifolio/images/eu.jpeg" alt="Kevin Tan" />
+  </div>
+</section>
 
-            <p>Especialista em Automação &amp; Backend. Transformando infraestruturas complexas em código eficiente e seguro.</p>
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="section-label">Sobre Mim</div>
+  <h2>Desenvolvedor com <span style="color:var(--accent)">DNA de infraestrutura.</span></h2>
+  <div class="sobre-grid">
+    <div class="sobre-text">
+      <p>Minha jornada começou garantindo que os servidores nunca parassem. Hoje, eu construo o software que roda neles. Focado em C#, Python e Cloud, busco criar soluções onde a performance encontra a segurança desde a primeira linha de código.</p>
+      <p>Atuo como Estagiário de TI na SEDUC/PROATI, consultor autônomo e desenvolvedor de projetos de automação, segurança e IA aplicada.</p>
+      <div class="sobre-stats">
+        <div class="stat-card"><div class="stat-num">3+</div><div class="stat-label">anos de experiência</div></div>
+        <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">projetos no GitHub</div></div>
+        <div class="stat-card"><div class="stat-num">4+</div><div class="stat-label">certificados</div></div>
+        <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">idiomas (PT · EN · ES)</div></div>
+      </div>
+    </div>
+    <div class="sobre-skills">
+      <h3>// Habilidades</h3>
+      <div class="skill-bar">
+        <div class="skill-header"><span>Python</span><span class="skill-pct">80%</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-header"><span>C# / .NET</span><span class="skill-pct">60%</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:60%"></div></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-header"><span>JavaScript (ES6+)</span><span class="skill-pct">70%</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:70%"></div></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-header"><span>Redes & DNS</span><span class="skill-pct">95%</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:95%"></div></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-header"><span>Windows/Linux Server</span><span class="skill-pct">90%</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-header"><span>Azure / AWS</span><span class="skill-pct">75%</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:75%"></div></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-header"><span>🇧🇷 Português</span><span class="skill-pct">Nativo</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--accent3)"></div></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-header"><span>🇺🇸 Inglês</span><span class="skill-pct">Intermediário</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:60%;background:linear-gradient(90deg,#3b82f6,#06d6a0)"></div></div>
+      </div>
+      <div class="skill-bar">
+        <div class="skill-header"><span>🇪🇸 Espanhol</span><span class="skill-pct">Intermediário</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:55%;background:linear-gradient(90deg,#f59e0b,#ef4444)"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <div class="social-media">
-                <a href="https://linkedin.com/in/kevin-miney-tan-broetto" target="_blank" rel="noopener noreferrer">
-                    <i class="bx bxl-linkedin"></i>
-                </a>
-                <a href="https://github.com/zKevinBrTz" target="_blank" rel="noopener noreferrer">
-                    <i class="bx bxl-github"></i>
-                </a>
-                <a href="mailto:kevinmineybroetto@gmail.com">
-                    <i class="bx bx-envelope"></i>
-                </a>
-            </div>
+<!-- STACKS -->
+<section id="stacks">
+  <div class="section-label">Tecnologias</div>
+  <h2>Minhas <span style="color:var(--accent)">Stacks</span></h2>
+  <p class="section-desc">Ferramentas e linguagens que uso no dia a dia para construir, automatizar e proteger sistemas.</p>
+  <div class="stacks-grid">
+    <span class="stack-tag"><i class="fas fa-code"></i> C# / .NET Core</span>
+    <span class="stack-tag"><i class="fas fa-code"></i> Python</span>
+    <span class="stack-tag"><i class="fas fa-code"></i> JavaScript (ES6+)</span>
+    <span class="stack-tag"><i class="fas fa-database"></i> SQL Server</span>
+    <span class="stack-tag"><i class="fab fa-microsoft"></i> Azure</span>
+    <span class="stack-tag"><i class="fab fa-aws"></i> AWS (EKS, S3, SQS, RDS)</span>
+    <span class="stack-tag"><i class="fab fa-windows"></i> Windows Server</span>
+    <span class="stack-tag"><i class="fab fa-linux"></i> Linux</span>
+    <span class="stack-tag"><i class="fas fa-terminal"></i> PowerShell</span>
+    <span class="stack-tag"><i class="fab fa-git-alt"></i> Git / CI-CD</span>
+    <span class="stack-tag"><i class="fas fa-network-wired"></i> TCP/IP · DNS · VPN</span>
+    <span class="stack-tag"><i class="fas fa-shield-alt"></i> Cyber Security</span>
+    <span class="stack-tag"><i class="fas fa-robot"></i> IA / Agentes Autônomos</span>
+    <span class="stack-tag"><i class="fas fa-chart-line"></i> KQL · Azure Monitor</span>
+    <span class="stack-tag"><i class="fas fa-terminal"></i> Bash Scripting</span>
+    <span class="stack-tag"><i class="fas fa-language"></i> EN · ES · PT</span>
+  </div>
 
-            <a href="/assets/curriculo-kevin-tan-dev.pdf" class="btn" download="Kevin_Tan_dev_CV.pdf">Download CV</a>
+  <!-- EM ESTUDO -->
+  <div class="study-label">
+    <i class="fas fa-flask"></i> Em estudo / aprendizado ativo
+  </div>
+  <div class="stacks-grid" style="margin-top:0.8rem;">
+    <span class="stack-tag stack-study"><i class="fas fa-tasks"></i> Jira</span>
+    <span class="stack-tag stack-study"><i class="fas fa-cogs"></i> Ansible</span>
+    <span class="stack-tag stack-study"><i class="fas fa-eye"></i> Nagios</span>
+    <span class="stack-tag stack-study"><i class="fas fa-hammer"></i> Jenkins</span>
+    <span class="stack-tag stack-study"><i class="fab fa-docker"></i> Docker</span>
+    <span class="stack-tag stack-study"><i class="fas fa-dharmachakra"></i> Kubernetes</span>
+  </div>
+
+</section>
+
+<!-- PROJETOS — GRID 2x2 -->
+<section id="projetos">
+  <div class="section-label">Projetos</div>
+  <h2>Últimos <span style="color:var(--accent)">Projetos</span></h2>
+  <p class="section-desc">Projetos práticos que combinam segurança, automação, cloud e inteligência artificial.</p>
+
+  <div class="projects-grid">
+
+    <!-- Linha 1, Col 1 -->
+    <div class="project-card">
+      <div class="project-img">
+        <img src="https://zkevinbrtz.github.io/meu-portifolio/images/projeto-cybersecurity.jpg" alt="Cybersecurity Lab" />
+      </div>
+      <div class="project-body">
+        <p class="project-cat">Security · Python</p>
+        <h3 class="project-title">Cybersecurity Lab</h3>
+        <p class="project-desc">Simulação de Ransomware e Keylogger em Python com threat modeling e análise de contramedidas de defesa ativa.</p>
+        <div class="project-footer">
+          <a class="project-link" href="https://github.com/zKevinBrTz/PROJETO-FINAL-CIBERSECURITY" target="_blank">
+            Ver no GitHub <i class="fas fa-arrow-right"></i>
+          </a>
         </div>
+      </div>
+    </div>
 
-        <div class="home-img">
-            <img src="images/eu.jpeg" alt="Foto de Kevin Tan">
+    <!-- Linha 1, Col 2 -->
+    <div class="project-card">
+      <div class="project-img">
+        <img src="https://zkevinbrtz.github.io/meu-portifolio/images/projeto-observability.jpg" alt="Azure Observabilidade" />
+      </div>
+      <div class="project-body">
+        <p class="project-cat">Cloud · Azure · KQL</p>
+        <h3 class="project-title">Azure Observabilidade</h3>
+        <p class="project-desc">Dashboards KQL, alertas inteligentes e runbooks para suporte a ambientes cloud críticos com Azure Monitor.</p>
+        <div class="project-footer">
+          <a class="project-link" href="https://github.com/zKevinBrTz/proj-DIO-Monitor" target="_blank">
+            Ver no GitHub <i class="fas fa-arrow-right"></i>
+          </a>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <!-- ========== SOBRE ========== -->
-    <section class="about" id="sobre">
-        <div class="about-content">
-            <h2 class="heading">Sobre <span>Mim</span></h2>
-            <h3>Desenvolvedor com DNA de infraestrutura.</h3>
-            <p>Minha jornada começou garantindo que os servidores nunca parassem. Hoje, eu construo o software que roda neles. Focado em C#, Python e Cloud, busco criar soluções onde a performance encontra a segurança desde a primeira linha de código.</p>
+    <!-- Linha 2, Col 1 -->
+    <div class="project-card">
+      <div class="project-img">
+        <img src="https://zkevinbrtz.github.io/meu-portifolio/images/projeto-datainsights.jpg" alt="Data Insights Lab" />
+      </div>
+      <div class="project-body">
+        <p class="project-cat">Data · ETL · EDA</p>
+        <h3 class="project-title">Data Insights Lab</h3>
+        <p class="project-desc">Estrutura de ETL e EDA para extração de insights operacionais a partir de dados estruturados e semi-estruturados.</p>
+        <div class="project-footer">
+          <a class="project-link" href="https://github.com/zKevinBrTz/analise-de-dados" target="_blank">
+            Ver no GitHub <i class="fas fa-arrow-right"></i>
+          </a>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <!-- ========== STACKS ========== -->
-    <section class="stacks" id="stacks">
-        <h2 class="heading">Minhas <span>Stacks</span></h2>
-        <div class="stacks-container">
-            <div class="stack-box"><img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white" alt="C#"></div>
-            <div class="stack-box"><img src="https://img.shields.io/badge/.NET_Core-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET Core"></div>
-            <div class="stack-box"><img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"></div>
-            <div class="stack-box"><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript"></div>
-            <div class="stack-box"><img src="https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white" alt="SQL Server"></div>
-            <div class="stack-box"><img src="https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white" alt="Azure"></div>
-            <div class="stack-box"><img src="https://img.shields.io/badge/Windows_Server-0078D6?style=for-the-badge&logo=windows-server&logoColor=white" alt="Windows Server"></div>
-            <div class="stack-box"><img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Linux"></div>
-            <div class="stack-box"><img src="https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white" alt="PowerShell"></div>
-            <div class="stack-box"><img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white" alt="Postman"></div>
-            <div class="stack-box"><img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git"></div>
-            <div class="stack-box"><img src="https://img.shields.io/badge/Cyber_Security-000000?style=for-the-badge&logo=eset&logoColor=white" alt="Cyber Security"></div>
+    <!-- Linha 2, Col 2 — NOVO PROJETO -->
+    <div class="project-card">
+      <span class="badge-new">NOVO</span>
+      <div class="project-img" style="background: linear-gradient(135deg, #0f1f2e, #0a2540);">
+        <!-- Placeholder visual para o projeto de IA -->
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;opacity:0.6">
+          <defs>
+            <radialGradient id="rg" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#5b6fff" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#06d6a0" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="400" height="180" fill="#0a0a1a"/>
+          <circle cx="200" cy="90" r="80" fill="url(#rg)"/>
+          <circle cx="200" cy="90" r="40" fill="none" stroke="#5b6fff" stroke-width="1" stroke-dasharray="4 4" opacity="0.6"/>
+          <circle cx="200" cy="90" r="60" fill="none" stroke="#8b5cf6" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.4"/>
+          <circle cx="200" cy="55" r="5" fill="#5b6fff" opacity="0.9"/>
+          <circle cx="233" cy="108" r="5" fill="#8b5cf6" opacity="0.9"/>
+          <circle cx="167" cy="108" r="5" fill="#06d6a0" opacity="0.9"/>
+          <line x1="200" y1="55" x2="233" y2="108" stroke="#5b6fff" stroke-width="1" opacity="0.5"/>
+          <line x1="200" y1="55" x2="167" y2="108" stroke="#8b5cf6" stroke-width="1" opacity="0.5"/>
+          <line x1="233" y1="108" x2="167" y2="108" stroke="#06d6a0" stroke-width="1" opacity="0.5"/>
+          <text x="200" y="94" text-anchor="middle" fill="#fff" font-size="11" font-family="monospace" opacity="0.7">MINERL</text>
+          <text x="200" y="108" text-anchor="middle" fill="#8b9fff" font-size="8" font-family="monospace" opacity="0.5">RL AGENT</text>
+        </svg>
+      </div>
+      <div class="project-body">
+        <p class="project-cat">IA · Reinforcement Learning</p>
+        <h3 class="project-title">MINERL — Bot com IA</h3>
+        <p class="project-desc">Agente autônomo com Reinforcement Learning para tomada de decisão em ambiente simulado. Exploração de RL aplicado a cenários de game AI.</p>
+        <div class="project-footer">
+          <a class="project-link" href="https://github.com/zKevinBrTz" target="_blank">
+            Ver no GitHub <i class="fas fa-arrow-right"></i>
+          </a>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <!-- ========== DIFERENCIAIS ========== -->
-    <section class="differentials" id="diferenciais">
-        <h2 class="heading">Meus <span>Diferenciais</span></h2>
-        <div class="diff-container">
-            <div class="diff-box">
-                <i class="bx bx-shield-quarter"></i>
-                <h3>Security First</h3>
-                <p>Implementação de práticas OWASP e proteção de APIs desde a primeira linha de código.</p>
-            </div>
-            <div class="diff-box">
-                <i class="bx bx-cog"></i>
-                <h3>Automação Ativa</h3>
-                <p>Redução de erros manuais através de scripts Python e PowerShell para tarefas críticas.</p>
-            </div>
-            <div class="diff-box">
-                <i class="bx bx-git-repo-forked"></i>
-                <h3>Clean Code</h3>
-                <p>Versionamento semântico e código legível, facilitando a manutenção e escalabilidade.</p>
-            </div>
+  </div>
+</section>
+
+<!-- PROJETOS DA FACULDADE -->
+<section id="projetos-faculdade">
+  <div class="section-label">Faculdade & Aprendizado</div>
+  <h2>Projetos <span style="color:var(--accent)">Acadêmicos</span></h2>
+  <p class="section-desc">Projetos desenvolvidos durante a graduação, combinando IA aplicada, interfaces modernas e lógica de programação.</p>
+
+  <!-- FRAUDE RADAR — destaque -->
+  <div class="facul-highlight">
+    <div class="facul-highlight-badge"><i class="fas fa-brain"></i> IA Integrada</div>
+    <div class="facul-highlight-content">
+      <div class="facul-highlight-text">
+        <p class="project-cat" style="margin-bottom:0.6rem;">IA · Segurança · Web & Mobile</p>
+        <h3 style="font-size:1.4rem;font-weight:800;margin-bottom:0.7rem;">
+          Fraude Radar <span style="color:var(--accent3)">🛡️</span>
+        </h3>
+        <p style="color:#9999bb;line-height:1.8;font-size:0.9rem;margin-bottom:1.2rem;">
+          Plataforma web e mobile que utiliza IA integrada para detectar possíveis ameaças em mensagens de texto, imagens e arquivos enviados pelo usuário. O sistema analisa padrões suspeitos e classifica o risco em tempo real, auxiliando na prevenção de golpes e engenharia social.
+        </p>
+        <div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
+          <span class="stack-tag" style="font-size:0.72rem;"><i class="fas fa-robot"></i> IA / LLM</span>
+          <span class="stack-tag" style="font-size:0.72rem;"><i class="fas fa-mobile-alt"></i> Web & App</span>
+          <span class="stack-tag" style="font-size:0.72rem;"><i class="fas fa-file-shield"></i> Análise de Arquivos</span>
+          <span class="stack-tag" style="font-size:0.72rem;"><i class="fas fa-image"></i> Visão Computacional</span>
         </div>
-    </section>
+      </div>
+      <div class="facul-highlight-visual">
+        <svg viewBox="0 0 220 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <defs>
+            <radialGradient id="rg2" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#06d6a0" stop-opacity="0.2"/>
+              <stop offset="100%" stop-color="#5b6fff" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="220" height="200" fill="#0a0a1a"/>
+          <circle cx="110" cy="100" r="70" fill="url(#rg2)"/>
+          <circle cx="110" cy="100" r="45" fill="none" stroke="#06d6a0" stroke-width="1" stroke-dasharray="3 5" opacity="0.5"/>
+          <circle cx="110" cy="100" r="65" fill="none" stroke="#5b6fff" stroke-width="0.5" stroke-dasharray="2 8" opacity="0.3"/>
+          <!-- shield -->
+          <path d="M110 65 L135 78 L135 105 Q135 125 110 135 Q85 125 85 105 L85 78 Z" fill="none" stroke="#06d6a0" stroke-width="1.5" opacity="0.8"/>
+          <path d="M100 100 L108 108 L122 92" fill="none" stroke="#06d6a0" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+          <!-- scanning lines -->
+          <line x1="70" y1="90" x2="88" y2="90" stroke="#5b6fff" stroke-width="1" opacity="0.5"/>
+          <line x1="132" y1="90" x2="150" y2="90" stroke="#5b6fff" stroke-width="1" opacity="0.5"/>
+          <line x1="70" y1="110" x2="88" y2="110" stroke="#5b6fff" stroke-width="1" opacity="0.4"/>
+          <line x1="132" y1="110" x2="150" y2="110" stroke="#5b6fff" stroke-width="1" opacity="0.4"/>
+          <text x="110" y="158" text-anchor="middle" fill="#06d6a0" font-size="9" font-family="monospace" opacity="0.7">FRAUDE RADAR</text>
+          <text x="110" y="170" text-anchor="middle" fill="#5b6fff" font-size="7" font-family="monospace" opacity="0.5">AI THREAT DETECTION</text>
+        </svg>
+      </div>
+    </div>
+  </div>
 
-    <!-- ========== HABILIDADES ========== -->
-    <section class="skills" id="skills">
-        <h2 class="heading">Minhas <span>Habilidades</span></h2>
-        <div class="skills-row">
+  <!-- GRID de outros projetos acadêmicos -->
+  <div class="facul-grid">
 
-            <div class="skills-column">
-                <h3 class="title">Desenvolvimento (Foco Atual)</h3>
-                <div class="skills-box">
-                    <div class="skills-content">
-                        <div class="progress">
-                            <h3>Python <span>80%</span></h3>
-                            <div class="bar"><span style="width: 80%;"></span></div>
-                        </div>
-                        <div class="progress">
-                            <h3>C# / .NET <span>60%</span></h3>
-                            <div class="bar"><span style="width: 60%;"></span></div>
-                        </div>
-                        <div class="progress">
-                            <h3>JavaScript (ES6+) <span>70%</span></h3>
-                            <div class="bar"><span style="width: 70%;"></span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="facul-card">
+      <div class="facul-icon"><i class="fas fa-palette"></i></div>
+      <p class="project-cat">UI/UX · Lovable · No-Code</p>
+      <h4>Interfaces & Produtos</h4>
+      <p>Criação de interfaces e MVPs de produto utilizando Lovable, Stitch e ferramentas de IA generativa para prototipação rápida e entrega de base de produto para clientes.</p>
+    </div>
 
-            <div class="skills-column">
-                <h3 class="title">Infraestrutura (Background)</h3>
-                <div class="skills-box">
-                    <div class="skills-content">
-                        <div class="progress">
-                            <h3>Redes &amp; DNS <span>95%</span></h3>
-                            <div class="bar bar-infra"><span style="width: 95%;"></span></div>
-                        </div>
-                        <div class="progress">
-                            <h3>Windows/Linux Server <span>90%</span></h3>
-                            <div class="bar bar-infra"><span style="width: 90%;"></span></div>
-                        </div>
-                        <div class="progress">
-                            <h3>Virtualização (VMware/Hyper-V) <span>85%</span></h3>
-                            <div class="bar bar-infra"><span style="width: 85%;"></span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="facul-card">
+      <div class="facul-icon" style="color:var(--accent2)"><i class="fas fa-gamepad"></i></div>
+      <p class="project-cat">Python · Lógica · CLI</p>
+      <h4>Central de Jogos Python</h4>
+      <p>Suite de jogos em Python em uma central unificada: Pedra/Papel/Tesoura, Batalha Naval, Quiz, Par ou Ímpar e Jogo da Velha — com menus interativos e lógica orientada a objetos.</p>
+    </div>
 
-        </div>
-    </section>
+  </div>
+</section>
+<section id="trajetoria">
+  <div class="section-label">Experiência</div>
+  <h2>Minha <span style="color:var(--accent)">Trajetória</span></h2>
+  <p class="section-desc">Da infraestrutura ao código — uma jornada contínua de evolução técnica.</p>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-meta">Abr/2025 – Presente</p>
+      <p class="tl-title">Estagiário de TI · SEDUC / PROATI</p>
+      <p class="tl-desc">Suporte técnico completo: manutenção de computadores, configuração de impressoras, cabeamento estruturado, diagnóstico de conectividade e atendimento a chamados.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-meta">2023 – Presente</p>
+      <p class="tl-title">Consultor de TI Autônomo</p>
+      <p class="tl-desc">Suporte a clientes corporativos e residenciais, automação de rotinas com Python/PowerShell, configuração de redes e gestão de SLA.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-meta">2022 – Abr/2025</p>
+      <p class="tl-title">Recuperador de Crédito · DNR Teleserviços</p>
+      <p class="tl-desc">Gestão de carteira via CRM em ambiente de alta pressão. Comunicação assertiva e análise crítica de processos operacionais.</p>
+    </div>
+  </div>
+</section>
 
-    <!-- ========== SERVIÇOS ========== -->
-    <section class="services" id="services">
-        <h2 class="heading">O que eu <span>Entrego</span></h2>
-        <div class="services-container">
-            <div class="services-box">
-                <i class="bx bx-code-alt"></i>
-                <h3>Desenvolvimento Backend</h3>
-                <p>Criação de APIs robustas e lógica de servidor focada em performance e escalabilidade.</p>
-            </div>
-            <div class="services-box">
-                <i class="bx bx-terminal"></i>
-                <h3>Automação de Processos</h3>
-                <p>Scripts em Python e PowerShell para automatizar tarefas repetitivas de TI e sistemas.</p>
-            </div>
-            <div class="services-box">
-                <i class="bx bx-cloud-upload"></i>
-                <h3>Arquitetura Cloud</h3>
-                <p>Configuração de ambientes seguros e escaláveis na nuvem, integrando Infra e Dev (DevOps).</p>
-            </div>
-        </div>
-    </section>
+<!-- CONTATO -->
+<section id="contato">
+  <div class="section-label">Contato</div>
+  <h2>Fale <span style="color:var(--accent)">Comigo</span></h2>
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <p>Disponível para oportunidades de estágio, emprego CLT e projetos freelance em Backend, Cloud e Automação.</p>
+      <!-- EMAIL CORRIGIDO -->
+      <a href="mailto:kevinmineybroetto@gmail.com" class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <span>kevinmineybroetto@gmail.com</span>
+      </a>
+      <a href="https://linkedin.com/in/kevin-miney-tan-broetto-10b07b2ab" target="_blank" class="contact-item">
+        <i class="fab fa-linkedin-in"></i>
+        <span>Kevin Miney Tan Broetto</span>
+      </a>
+      <a href="https://github.com/zKevinBrTz" target="_blank" class="contact-item">
+        <i class="fab fa-github"></i>
+        <span>github.com/zKevinBrTz</span>
+      </a>
+      <a href="tel:+5511944469086" class="contact-item">
+        <i class="fas fa-phone"></i>
+        <span>(11) 94446-9086</span>
+      </a>
+    </div>
+    <form class="contact-form" onsubmit="handleForm(event)">
+      <input type="text" placeholder="Seu nome" required />
+      <input type="email" placeholder="Seu e-mail" required />
+      <textarea placeholder="Sua mensagem…" required></textarea>
+      <button type="submit"><i class="fas fa-paper-plane"></i> &nbsp;Enviar Mensagem</button>
+    </form>
+  </div>
+</section>
 
-    <!-- ========== PROJETOS ========== -->
-    <section class="projects" id="projetos">
-        <h2 class="heading">Últimos <span>Projetos</span></h2>
-        <div class="projects-container">
+<!-- FOOTER -->
+<footer>
+  <p>Copyright © 2026 por <a href="#home">Kevin Tan</a> · Todos os Direitos Reservados.</p>
+</footer>
 
-            <div class="project-box">
-                <img src="images/projeto-cybersecurity.jpg" alt="Cybersecurity Lab">
-                <div class="project-layer">
-                    <h4>Cybersecurity Lab</h4>
-                    <p>Simulação de Ransomware e Keylogger em Python.</p>
-                    <a href="https://github.com/zKevinBrTz/PROJETO-FINAL-CIBERSECURITY" target="_blank" rel="noopener noreferrer">
-                        <i class="bx bx-link-external"></i>
-                    </a>
-                </div>
-            </div>
+<a href="#home" class="scroll-up" title="Voltar ao topo"><i class="fas fa-arrow-up"></i></a>
 
-            <div class="project-box">
-                <img src="images/projeto-observability.jpg" alt="Azure Observabilidade">
-                <div class="project-layer">
-                    <h4>Azure Observabilidade</h4>
-                    <p>Guia técnico de configuração de monitoramento e alertas com KQL.</p>
-                    <a href="https://github.com/zKevinBrTz/proj-DIO-Monitor" target="_blank" rel="noopener noreferrer">
-                        <i class="bx bx-link-external"></i>
-                    </a>
-                </div>
-            </div>
+<script>
+  // ── TYPEWRITER ──
+  const words = [
+    'Automação & Backend',
+    'Cloud & DevOps',
+    'Segurança Ofensiva',
+    'Infraestrutura como Código',
+    'Observabilidade Azure',
+    'IA Aplicada'
+  ];
+  let wi = 0, ci = 0, deleting = false;
+  const el = document.getElementById('typewriter-word');
+  function type() {
+    const word = words[wi];
+    if (!deleting) {
+      el.textContent = word.slice(0, ++ci);
+      if (ci === word.length) { deleting = true; setTimeout(type, 1800); return; }
+      setTimeout(type, 75);
+    } else {
+      el.textContent = word.slice(0, --ci);
+      if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; setTimeout(type, 400); return; }
+      setTimeout(type, 40);
+    }
+  }
+  type();
 
-            <div class="project-box">
-                <img src="images/projeto-datainsights.jpg" alt="Data Insights Lab">
-                <div class="project-layer">
-                    <h4>Data Insights Lab</h4>
-                    <p>Estrutura de ETL e EDA para extração de insights operacionais.</p>
-                    <a href="https://github.com/zKevinBrTz/analise-de-dados" target="_blank" rel="noopener noreferrer">
-                        <i class="bx bx-link-external"></i>
-                    </a>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ========== TRAJETÓRIA ========== -->
-    <section class="timeline" id="trajetoria">
-        <h2 class="heading">Minha <span>Trajetória</span></h2>
-        <div class="timeline-container">
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-date">Dez 2022 – Presente</div>
-                <div class="timeline-content">
-                    <h3>Recuperador de Crédito | DNR</h3>
-                    <p>Atuação estratégica na recuperação de ativos e negociação de débitos. Especialista em operar sistemas de CRM e plataformas de cobrança, mantendo altos índices de produtividade e foco em metas contratuais.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-date">2023 – Presente</div>
-                <div class="timeline-content">
-                    <h3>Consultor de TI Autônomo</h3>
-                    <p>Desenvolvimento de soluções personalizadas para clientes diretos, incluindo automação de rotinas em Python/PowerShell, suporte especializado N2 e estruturação de redes seguras.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-date">Foco Atual</div>
-                <div class="timeline-content">
-                    <h3>Especialização em Desenvolvimento</h3>
-                    <p>Transicionando o DNA de infraestrutura para o Backend. Criando aplicações robustas com C#, .NET e integração Cloud para entregar software escalável e seguro.</p>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ========== CONTATO ========== -->
-    <section class="contact" id="contato">
-        <h2 class="heading">Fale <span>Comigo</span></h2>
-        <form action="#" method="post">
-            <div class="input-group">
-                <input type="text" name="nome" placeholder="Nome Completo" required>
-                <input type="email" name="email" placeholder="Seu melhor E-mail" required>
-            </div>
-            <div class="input-group">
-                <input type="tel" name="telefone" placeholder="(11) 99999-9999">
-                <input type="text" name="motivo" placeholder="Motivo do contato">
-            </div>
-            <textarea name="mensagem" id="mensagem" cols="30" rows="10" placeholder="Como posso te ajudar?"></textarea>
-            <button type="submit" class="btn contact-btn">Enviar Mensagem</button>
-        </form>
-    </section>
-
-    <!-- ========== FOOTER ========== -->
-    <footer class="footer">
-        <div class="footer-text">
-            <p>Copyright &copy; 2026 por Kevin | Todos os Direitos Reservados.</p>
-        </div>
-        <div class="footer-iconTop">
-            <a href="#home"><i class="bx bx-up-arrow-alt"></i></a>
-        </div>
-    </footer>
-
-    <!-- ========== SCRIPTS ========== -->
-    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <script src="https://unpkg.com/scrollreveal"></script>
-
-    <script>
-        /* ---------- Typed.js ---------- */
-        var typed = new Typed(".typing", {
-            strings: ["Full Stack Developer", "Cloud Engineer", "DevOps Specialist"],
-            typeSpeed: 100,
-            backSpeed: 60,
-            loop: true,
-            preStringTyped: function (arrayPos) {
-                var colors = ["#ff0000", "#00e7ff", "#9370db"];
-                var typingSpan = document.querySelector(".typing");
-                var cursor = document.querySelector(".typed-cursor");
-                typingSpan.style.color = colors[arrayPos];
-                typingSpan.style.textShadow = "0 0 10px " + colors[arrayPos];
-                if (cursor) {
-                    cursor.style.color = colors[arrayPos];
-                }
-            }
-        });
-
-        /* ---------- ScrollReveal ---------- */
-        ScrollReveal({
-            reset: true,
-            distance: "80px",
-            duration: 2000,
-            delay: 200
-        });
-        ScrollReveal().reveal(".home-content, .heading",           { origin: "top" });
-        ScrollReveal().reveal(".home-img, .services-container, .projects-container, .contact form", { origin: "bottom" });
-        ScrollReveal().reveal(".home-content h1, .about-img",      { origin: "left" });
-        ScrollReveal().reveal(".home-content p, .about-content",   { origin: "right" });
-
-        /* ---------- Skill Bars (IntersectionObserver) ---------- */
-        var skillBoxes = document.querySelectorAll(".skills-box");
-        var skillObserver = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("animate");
-                } else {
-                    entry.target.classList.remove("animate");
-                }
-            });
-        }, { threshold: 0.5 });
-        skillBoxes.forEach(function (box) { skillObserver.observe(box); });
-
-        /* ---------- Menu Mobile ---------- */
-        var menuIcon = document.getElementById("menu-icon");
-        var navbar   = document.querySelector(".navbar");
-        menuIcon.addEventListener("click", function () {
-            menuIcon.classList.toggle("bx-x");
-            navbar.classList.toggle("active");
-        });
-    </script>
+  function handleForm(e) {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.querySelector('input[type="email"]').value;
+    const name = form.querySelector('input[type="text"]').value;
+    const msg = form.querySelector('textarea').value;
+    window.location.href = `mailto:kevinmineybroetto@gmail.com?subject=Contato pelo portfólio — ${encodeURIComponent(name)}&body=${encodeURIComponent(msg)}%0A%0ADe: ${encodeURIComponent(email)}`;
+  }
+</script>
 
 </body>
 </html>
